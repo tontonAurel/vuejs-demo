@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VueJs Tutorial - coligo</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+      <div v-bind:title="title">Dynamic Title</div>
+      <ol>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ol>
+      <ul>
+      <app-component v-for="todo in todos" v-bind:todo="todo"></app-component>
+      </ul>
+      <button v-on:click="updateMessage(new Date())">{{ seen }}</button>
+    </div>
+
+  <script src="/assets/js/index.js"></script>
+  </body>
+
+</html>
