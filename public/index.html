@@ -2,20 +2,38 @@
 <html>
   <head>
     <title>VueJs Tutorial - coligo</title>
+    <style>
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+      position: absolute;
+      top:0;
+      left:0;
+    }
+    .fade-enter, .fade-leave-active {
+      opacity: 0
+    }
+    div {
+      position: relative;;
+    }
+    #app {
+      position: relative;
+    }
+  </style>
   </head>
   <body>
     <div id="app">
-      {{ message }}
-      <div v-bind:title="title">Dynamic Title</div>
-      <ol>
-        <li v-for="todo in todos">
-          {{ todo.text }}
-        </li>
-      </ol>
-      <ul>
-      <app-component v-for="todo in todos" v-bind:todo="todo"></app-component>
-      </ul>
-      <button v-on:click="updateMessage(new Date())">{{ seen }}</button>
+      <router-view name="nav"></router-view>
+      <div>
+        <transition name="fade">
+          <router-view :key="$route.params.section"></router-view>
+        </transition>
+      </div>
+      <!--<nav-component></nav-component>
+      <div>
+        <transition name="fade">
+            <router-view :key="$route.params.section"></router-view>
+        </transition>
+      </div> -->
     </div>
 
   <script src="/assets/js/index.js"></script>
