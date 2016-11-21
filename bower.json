@@ -1,0 +1,21 @@
+{
+  "name": "demo-vuejs",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Aurelien RUARO <aurelien.ruaro@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/tontonAurel/vuejs-demo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.0.8",
+    "vue-router": "^2.0.3"
+  }
+}
