@@ -25,7 +25,7 @@ gulp.task('serve', ['build.index', 'js'], function() {
     browserSync.init({
         server: "./public"
     });
-     gulp.watch("src/js/**/*.js", ['js:watch']);
+     gulp.watch(["src/js/**/*.js", "src/js/**/*.vue"], ['js:watch']);
      gulp.watch("src/index.html", ['index:watch']);
 });
 

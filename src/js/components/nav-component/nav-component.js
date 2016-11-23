@@ -1,14 +1,23 @@
 import Vue from 'vue';
 
 
-const NavComponent = Vue.component('nav-component', {
+const NavComponent = Vue.component('nav-component',  {
   template: `
-  <nav>
-    <router-link :to="{name:'section', params:{section:'demo'}}">Go to Demo</router-link>
-    <router-link :to="{name:'section', params:{section:'foo'}}">Go to Foo</router-link>
-    <router-link :to="{name:'bar', params:{section:$route.params.section}}">Go to Foo Childs</router-link>
-  </nav>
-`
-});
+    <div>
+    <span>{{ message }}</span>
+    <div>
+      {{ header }}
+      </div>
+    </div>`,
+  data: function() {
+    return {
+      message: 'content',
+    }
+  }, computed: {
+    header: function() {
+      return this.message + new Date()
+    }
+  }
+})
 
 export default NavComponent;

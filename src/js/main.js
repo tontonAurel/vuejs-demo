@@ -1,96 +1,37 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource/dist/vue-resource';
+import Post from './Post.vue';
+import store from './store';
+
+// import VueResource from '../src/index';
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
-import NavComponent from './components/nav-component/nav-component';
-import FooComponent from './components/foo-component/foo-component';
-
-
-const Foo = FooComponent;
-const Bar = {template: '<div>bar</div>'};
-const Main = {template: '<div><router-view></router-view></div>'};
-
-// const routes = [
-//
-//   { path: '/bar',  component: Bar},
-//   { path: '/:section', name:'section', component: Foo}
-//
-// ];
-
-const routes= [
-    {
-      path: '/',
-      components: {
-        default: Main,
-        nav: NavComponent
-      },
-      children: [
-        {
-          path: '/:section',
-          name:'section',
-          component: Foo,
-          children: [{
-            path:'bar',
-            name:'bar',
-            component: Bar,
-          }]
-        }
-      ],
-    }
-  ]
-
-
-// const UserHome = { template: '<div>Home</div>' }
-// const UserProfile = { template: '<div>Profile</div>' }
-// const UserPosts = { template: '<div>Posts</div>' }
-// const Nav = { template: '<div>Nav</div>' }
-// const Main = { template: '<div><router-view></router-view></div>' }
-//
-// const User = {
-//   template: `
-//     <div class="user">
-//       <h2>User {{ $route.params.id }}</h2>
-//       <router-view></router-view>
-//     </div>
-//   `
-// }
-//
-// const routes= [
-//     {
-//       path:"/",
-//       component: Main,
-//       children: [
-//         { path: '/user/:id', component: User,
-//         children: [
-//           { path: '', component: UserHome },
-//           {
-//             path: 'profile',
-//             component: UserProfile
-//           },
-//           {
-//             path: 'posts',
-//             component: UserPosts
-//           }
-//         ]
-//       }
-//     ]
-//   }
-// ]
+const Home = { template: '<div>home</div>' }
 
 const router = new VueRouter({
-  routes, // short for routes: routes,
-  // mode: 'history',
-});
-
-
-var app = new Vue({
-  el: '#app',
-  router,
-  components: {
-    'nav-component': NavComponent
-  }
-});
-
-var content = new Vue({
-  
+  mode: 'history',
+  base: __dirname,
+  routes: [
+    { path: '/', component: Home },
+    { path: '/post/:id', component: Post }
+  ]
 })
+
+new Vue({
+  store,
+  router,
+  template: `
+    <div id="app">
+      <h1>Data Fetching</h1>
+      <ul>
+        <router-link tag="li" to="/"><a>/</a></router-link>
+        <li><router-link to="/post/1">/post/1</router-link></li>
+        <li><router-link to="/post/2">/post/2</router-link></li>
+        <li><router-link to="/post/3">/post/3</router-link></li>
+      </ul>
+      <router-view class="view"></router-view>
+    </div>
+  `
+}).$mount('#app');
